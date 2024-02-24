@@ -5,7 +5,7 @@ const getAllSalesService = async () => {
   return { status: 'SUCCESSFUL', data: allSales };
 };
 
-const getSaleById = async (saleId) => {
+const getSaleByIdService = async (saleId) => {
   const sale = await salesModel.getSaleById(saleId);
 
   if (!sale) {
@@ -17,5 +17,5 @@ const getSaleById = async (saleId) => {
 
 module.exports = {
   getAllSalesService,
-  getSaleById,
+  getSaleByIdService,
 };
