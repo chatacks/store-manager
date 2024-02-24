@@ -18,7 +18,22 @@ const productMockById = {
   name: 'Martelo de Thor',
 };
 
+const allProductsServiceMock = {
+  status: 'SUCCESSFUL', data: allProductsMock,
+};
+
+const productServiceByIdMock = {
+  status: 'SUCCESSFUL', data: productMockById,
+};
+
+const productServiceByIdNotFoundMock = {
+  status: 'NOT_FOUND', data: { message: 'Product not found' },
+};
+
 module.exports = {
   allProductsMock,
   productMockById,
+  allProductsServiceMock,
+  productServiceByIdMock,
+  productServiceByIdNotFoundMock,
 };
