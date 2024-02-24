@@ -43,7 +43,7 @@ describe('Testes Unitários - Camada CONTROLLER', function () {
       expect(res.json).to.have.been.calledWith(productMockById);
     });
 
-    it.only('GET:Controller/:id  - Error ao passar um id inválido', async function () {
+    it('GET:Controller/:id  - Error ao passar um id inválido', async function () {
       sinon.stub(productsService, 'getProductByIdService').resolves(productServiceByIdNotFoundMock);
 
       const req = {
@@ -61,7 +61,7 @@ describe('Testes Unitários - Camada CONTROLLER', function () {
       expect(res.json).to.have.been.calledWith({ message: 'Product not found' });
     });
   });
-  
+
   afterEach(function () {
     sinon.restore();
   });
