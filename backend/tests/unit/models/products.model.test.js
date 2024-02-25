@@ -24,7 +24,7 @@ describe('Testes Unitários Products:Model', function () {
     expect(responseProductById).to.be.deep.equal({ id: 1, name: 'Martelo de Thor' });
   });
   
-  it('Cadastra com SUCCESSFUL um produto', async function () {
+  it('Cadastra com sucesso um produto', async function () {
     sinon.stub(connection, 'execute').resolves([{ insertId: 4 }]);
   
     const nameProduct = {
