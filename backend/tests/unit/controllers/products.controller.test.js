@@ -4,7 +4,7 @@ const chai = require('chai');
 const sinonChai = require('sinon-chai');
 const { productsService } = require('../../../src/services');
 const { productsController } = require('../../../src/controllers');
-const { allProductsMock, allProductsServiceMock, productServiceByIdMock, productMockById, productServiceByIdNotFoundMock } = require('../mocks/products.mock');
+const { allProductsMock, allProductsServiceMock, productServiceByIdMock, productMockById, productServiceByIdNotFoundMock, createdProductServiceByMock, errorProductServiceByMock, errorProductServiceWithoutNameMock } = require('../mocks/products.mock');
 
 chai.use(sinonChai);
 
@@ -58,6 +58,64 @@ describe('Testes Unitários - Products:Controller', function () {
 
     expect(res.status).to.have.been.calledWith(404);
     expect(res.json).to.have.been.calledWith({ message: 'Product not found' });
+  });
+
+  it('POST:Controller - Cadastra com sucesso um produto', async function () {
+    sinon.stub(productsService, 'insertProductService').resolves(createdProductServiceByMock);
+
+    const req = {
+      body: {
+        name: 'ProdutoX',
+      },
+    };
+
+    const res = {
+      status: sinon.stub().returnsThis(),
+      json: sinon.stub(),
+    };
+
+    await productsController.insertProductController(req, res);
+
+    expect(res.status).to.have.been.calledWith(201);
+    expect(res.json).to.have.been.calledWith({ id: 4, name: 'ProdutoX' });
+  });
+
+  it('POST:Controller - Erro ao tentar cadastrar um produto com menos de 5 caracteres', async function () {
+    sinon.stub(productsService, 'insertProductService').resolves(errorProductServiceByMock);
+
+    const req = {
+      body: {
+        name: 'Prod',
+      },
+    };
+
+    const res = {
+      status: sinon.stub().returnsThis(),
+      json: sinon.stub(),
+    };
+
+    await productsController.insertProductController(req, res);
+
+    expect(res.status).to.have.been.calledWith(422);
+    expect(res.json).to.have.been.calledWith({ message: '"name" length must be at least 5 characters long' });
+  });
+
+  it('POST:Controller - Erro ao tentar cadastrar um produto sem "name"', async function () {
+    sinon.stub(productsService, 'insertProductService').resolves(errorProductServiceWithoutNameMock);
+
+    const req = {
+      body: {},
+    };
+
+    const res = {
+      status: sinon.stub().returnsThis(),
+      json: sinon.stub(),
+    };
+
+    await productsController.insertProductController(req, res);
+
+    expect(res.status).to.have.been.calledWith(400);
+    expect(res.json).to.have.been.calledWith({ message: '"name" is required' });
   });
 
   afterEach(function () {

@@ -35,6 +35,18 @@ const productInserted = {
   name: 'ProdutoX',
 };
 
+const createdProductServiceByMock = {
+  status: 'CREATED', data: { id: 4, name: 'ProdutoX' },
+};
+
+const errorProductServiceByMock = {
+  status: 'INVALID_VALUE', data: { message: '"name" length must be at least 5 characters long' },
+};
+
+const errorProductServiceWithoutNameMock = {
+  status: 'BAD_REQUEST', data: { message: '"name" is required' },
+};
+
 module.exports = {
   allProductsMock,
   productMockById,
@@ -42,4 +54,7 @@ module.exports = {
   productServiceByIdMock,
   productServiceByIdNotFoundMock,
   productInserted,
+  createdProductServiceByMock,
+  errorProductServiceByMock,
+  errorProductServiceWithoutNameMock,
 };
