@@ -32,7 +32,22 @@ const saleByIdMockModel = [
   },
 ];
 
+const allSalesServiceMock = {
+  status: 'SUCCESSFUL', data: allSalesMockModel,
+};
+
+const saleServiceByIdMock = {
+  status: 'SUCCESSFUL', data: saleByIdMockModel,
+};
+
+const salesServiceByIdNotFoundMock = {
+  status: 'NOT_FOUND', data: { message: 'Sale not found' },
+};
+
 module.exports = {
   allSalesMockModel,
   saleByIdMockModel,
+  allSalesServiceMock,
+  saleServiceByIdMock,
+  salesServiceByIdNotFoundMock,
 };
