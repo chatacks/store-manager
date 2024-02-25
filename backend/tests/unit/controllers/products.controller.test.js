@@ -9,10 +9,6 @@ const { allProductsMock, allProductsServiceMock, productServiceByIdMock, product
 chai.use(sinonChai);
 
 describe('Testes Unitários - Products:Controller', function () {
-  afterEach(function () {
-    sinon.restore();
-  });
-  
   it('GET:Controller - Recupera com sucesso os produtos', async function () {
     sinon.stub(productsService, 'getAllProductsService').resolves(allProductsServiceMock);
 
@@ -62,5 +58,9 @@ describe('Testes Unitários - Products:Controller', function () {
 
     expect(res.status).to.have.been.calledWith(404);
     expect(res.json).to.have.been.calledWith({ message: 'Product not found' });
+  });
+
+  afterEach(function () {
+    sinon.restore();
   });
 });

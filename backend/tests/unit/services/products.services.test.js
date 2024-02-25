@@ -5,10 +5,6 @@ const { allProductsMock, productMockById } = require('../mocks/products.mock');
 const { productsService } = require('../../../src/services');
 
 describe('Testes Unitários - Products:Service', function () {
-  afterEach(function () {
-    sinon.restore();
-  });
-
   it('Recupera com SUCCESSFUL os produtos pela camada Service', async function () {
     sinon.stub(productsModel, 'getAllProducts').resolves(allProductsMock);
 
@@ -41,8 +37,10 @@ describe('Testes Unitários - Products:Service', function () {
 
     expect(response.status).to.be.equal('NOT_FOUND');
     expect(response.data).to.be.an('object');
-    expect(response.data).to.be.deep.equal({
-      message: 'Product not found',
-    });
+    expect(response.data.message).to.be.equal('Product not found');
+  });
+
+  afterEach(function () {
+    sinon.restore();
   });
 });
