@@ -17,14 +17,14 @@ const getAllSales = async () => {
 };
 
 const getSaleById = async (saleId) => {
-  const [[sale]] = await connection.execute(`SELECT
+  const [sale] = await connection.execute(`SELECT
     date,
     product_id 'productId',
     quantity
   FROM sales
     INNER JOIN sales_products
       ON sales.id = sales_products.sale_id
-  WHERE product_id = ?;`, [saleId]);
+  WHERE sale_id = ?;`, [saleId]);
 
   return sale;
 };
