@@ -4,47 +4,45 @@ const { productsModel } = require('../../../src/models');
 const { allProductsMock, productMockById } = require('../mocks/products.mock');
 const { productsService } = require('../../../src/services');
 
-describe('Testes Unitários - Camada SERVICE', function () {
-  describe('Testes Unitários - Products:Service', function () {
-    it('Recupera com SUCCESSFUL os produtos pela camada Service', async function () {
-      sinon.stub(productsModel, 'getAllProducts').resolves(allProductsMock);
+describe('Testes Unitários - Products:Service', function () {
+  afterEach(function () {
+    sinon.restore();
+  });
 
-      const response = await productsService.getAllProductsService();
+  it('Recupera com SUCCESSFUL os produtos pela camada Service', async function () {
+    sinon.stub(productsModel, 'getAllProducts').resolves(allProductsMock);
 
-      expect(response.status).to.be.equal('SUCCESSFUL');
-      expect(response.data).to.be.an('array');
-      expect(response.data).to.be.deep.equal(allProductsMock);
-    });
+    const response = await productsService.getAllProductsService();
 
-    it('Recupera com SUCCESSFUL o produto correspondente ao id recebido', async function () {
-      sinon.stub(productsModel, 'getById').resolves(productMockById);
-      const productId = 1;
+    expect(response.status).to.be.equal('SUCCESSFUL');
+    expect(response.data).to.be.an('array');
+    expect(response.data).to.be.deep.equal(allProductsMock);
+  });
 
-      const response = await productsService.getProductByIdService(productId);
+  it('Recupera com SUCCESSFUL o produto correspondente ao id recebido', async function () {
+    sinon.stub(productsModel, 'getById').resolves(productMockById);
+    const productId = 1;
 
-      expect(response.status).to.be.equal('SUCCESSFUL');
-      expect(response.data).to.be.an('object');
-      expect(response.data).to.be.deep.equal({
-        id: 1,
-        name: 'Martelo de Thor',
-      });
-    });
+    const response = await productsService.getProductByIdService(productId);
 
-    it('Ao receber um id inválido retorna um error', async function () {
-      sinon.stub(productsModel, 'getById').resolves(undefined);
-      const productIdError = 999;
-
-      const response = await productsService.getProductByIdService(productIdError);
-
-      expect(response.status).to.be.equal('NOT_FOUND');
-      expect(response.data).to.be.an('object');
-      expect(response.data).to.be.deep.equal({
-        message: 'Product not found',
-      });
+    expect(response.status).to.be.equal('SUCCESSFUL');
+    expect(response.data).to.be.an('object');
+    expect(response.data).to.be.deep.equal({
+      id: 1,
+      name: 'Martelo de Thor',
     });
   });
 
-  afterEach(function () {
-    sinon.restore();
+  it('Ao receber um id inválido retorna um error', async function () {
+    sinon.stub(productsModel, 'getById').resolves(undefined);
+    const productIdError = 999;
+
+    const response = await productsService.getProductByIdService(productIdError);
+
+    expect(response.status).to.be.equal('NOT_FOUND');
+    expect(response.data).to.be.an('object');
+    expect(response.data).to.be.deep.equal({
+      message: 'Product not found',
+    });
   });
 });
