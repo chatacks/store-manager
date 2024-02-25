@@ -19,12 +19,12 @@ describe('Testes Unitários Sales:Model', function () {
   });
 
   it('Recupera com sucesso a venda correspondente ao id correto', async function () {
-    sinon.stub(connection, 'execute').resolves([[saleByIdMockModel]]);
+    sinon.stub(connection, 'execute').resolves([saleByIdMockModel]);
     const saleId = 1;
     
     const response = await salesModel.getSaleById(saleId);
 
-    expect(response).to.be.an('object');
+    expect(response).to.be.an('array');
     expect(response).to.be.deep.equal(saleByIdMockModel);
   });
 });

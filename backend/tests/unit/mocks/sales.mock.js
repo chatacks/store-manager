@@ -19,11 +19,18 @@ const allSalesMockModel = [
   },
 ];
 
-const saleByIdMockModel = {
-  date: '2024-02-24T22:20:22.000Z',
-  productId: 1,
-  quantity: 5,
-};
+const saleByIdMockModel = [
+  {
+    date: '2024-02-25T16:57:12.000Z',
+    productId: 1,
+    quantity: 5,
+  },
+  {
+    date: '2024-02-25T16:57:12.000Z',
+    productId: 2,
+    quantity: 10,
+  },
+];
 
 module.exports = {
   allSalesMockModel,
