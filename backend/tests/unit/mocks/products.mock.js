@@ -30,10 +30,16 @@ const productServiceByIdNotFoundMock = {
   status: 'NOT_FOUND', data: { message: 'Product not found' },
 };
 
+const productInserted = {
+  id: 4,
+  name: 'ProdutoX',
+};
+
 module.exports = {
   allProductsMock,
   productMockById,
   allProductsServiceMock,
   productServiceByIdMock,
   productServiceByIdNotFoundMock,
+  productInserted,
 };
