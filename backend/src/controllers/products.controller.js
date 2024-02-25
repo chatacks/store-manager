@@ -20,7 +20,18 @@ const getProductByIdController = async (req, res) => {
   }
 };
 
+const insertProductController = async (req, res) => {
+  try {
+    const name = req.body;
+    const { status, data } = await productsService.insertProductService(name);
+    return res.status(mapStatusHTTP(status)).json(data);
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
 module.exports = {
   getAllProductsController,
   getProductByIdController,
+  insertProductController,
 };

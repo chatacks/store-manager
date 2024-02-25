@@ -17,14 +17,10 @@ const getProductByIdService = async (productId) => {
 };
 
 const insertProductService = async (nameProduct) => { 
-  const productToBeInserted = await productsModel.insertProduct(nameProduct);
-
   const error = validationNameProductValue(nameProduct);
   if (error) return { status: error.status, data: { message: error.message } };
-
-  if (!productToBeInserted) {
-    return { status: 'INVALID_VALUE', data: { message: 'Need a product to be registered' } };
-  }
+  
+  const productToBeInserted = await productsModel.insertProduct(nameProduct);
 
   return { status: 'CREATED', data: productToBeInserted };
 };
