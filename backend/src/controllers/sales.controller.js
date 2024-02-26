@@ -20,7 +20,17 @@ const getSaleController = async (req, res) => {
   }
 };
 
+const insertSaleController = async (req, res) => {
+  try {
+    const { status, data } = await salesService.insertSaleService(req.body);
+    res.status(mapStatusHTTP(status)).json(data);
+  } catch (error) {
+    console.error(error.message);
+  }
+};
+
 module.exports = {
   getAllSalesController,
   getSaleController,
+  insertSaleController,
 };

@@ -15,7 +15,14 @@ const getSaleByIdService = async (saleId) => {
   return { status: 'SUCCESSFUL', data: sale };
 };
 
+const insertSaleService = async (products) => {
+  const insertSale = await salesModel.sales(products);
+
+  return { status: 'CREATED', data: insertSale };
+};
+
 module.exports = {
   getAllSalesService,
   getSaleByIdService,
+  insertSaleService,
 };
