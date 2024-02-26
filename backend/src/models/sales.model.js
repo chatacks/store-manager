@@ -39,7 +39,7 @@ const insertSale = async () => {
 const sales = async (products) => {
   const insertId = await insertSale();
 
-  await products.map(({ productId, quantity }) => 
+  products.map(({ productId, quantity }) => 
     connection.execute(
       'INSERT INTO sales_products(sale_id, product_id, quantity) VALUES (?, ?, ?)',
       [insertId, productId, quantity],
