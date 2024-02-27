@@ -39,7 +39,7 @@ const insertSale = async () => {
 const sales = async (products) => {
   const insertId = await insertSale();
 
-  products.map(({ productId, quantity }) => 
+  products.forEach(async ({ productId, quantity }) =>
     connection.execute(
       'INSERT INTO sales_products(sale_id, product_id, quantity) VALUES (?, ?, ?)',
       [insertId, productId, quantity],
@@ -54,5 +54,6 @@ const sales = async (products) => {
 module.exports = {
   getAllSales,
   getSaleById,
+  insertSale,
   sales,
 };
