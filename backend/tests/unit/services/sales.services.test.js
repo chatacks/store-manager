@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
 const { salesModel } = require('../../../src/models');
-const { allSalesMockModel, saleByIdMockModel, saleCreatedMockModel, insertSalesErrorRequiredProduct, insertSalesErrorRequiredQuantity, insertSalesErrorQuantityThan0, insertSalesErrorProductIdNotFound } = require('../mocks/sales.mock');
+const { allSalesMockModel, saleByIdMockModel, insertSalesErrorRequiredProduct, insertSalesErrorRequiredQuantity, insertSalesErrorQuantityThan0, insertSalesErrorProductIdNotFound, saleCreatedMockModel } = require('../mocks/sales.mock');
 const { salesService } = require('../../../src/services');
 
 describe('Testes unitários Sales:Services', function () {
