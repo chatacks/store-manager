@@ -63,7 +63,7 @@ const insertSalesErrorRequiredProduct = {
 };
 
 const insertSalesErrorRequiredQuantity = {
-  status: 'BAD_REQUEST', data: { message: '"productId" is required' },
+  status: 'BAD_REQUEST', data: { message: '"quantity" is required' },
 };
 
 const insertSalesErrorQuantityThan0 = {
@@ -74,6 +74,10 @@ const insertSalesErrorProductIdNotFound = {
   status: 'NOT_FOUND', data: { message: 'Product not found' },
 };
 
+const insertSaleCreated = {
+  status: 'CREATED', data: saleCreatedMockModel,
+};
+
 module.exports = {
   allSalesMockModel,
   saleByIdMockModel,
@@ -81,6 +85,7 @@ module.exports = {
   saleServiceByIdMock,
   salesServiceByIdNotFoundMock,
   saleCreatedMockModel,
+  insertSaleCreated,
   insertSalesErrorRequiredProduct,
   insertSalesErrorRequiredQuantity,
   insertSalesErrorQuantityThan0,
