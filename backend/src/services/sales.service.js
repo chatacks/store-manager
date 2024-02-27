@@ -20,7 +20,7 @@ const getSaleByIdService = async (saleId) => {
 const insertSaleService = async (sale) => {
   const error = validationSaleFields(sale);
   if (error) return { status: error.status, data: { message: error.message } };
-
+  
   const errorIdField = await validationProductIdField(sale);
   
   if (errorIdField) {

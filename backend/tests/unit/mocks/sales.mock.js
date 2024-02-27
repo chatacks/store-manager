@@ -58,6 +58,22 @@ const salesServiceByIdNotFoundMock = {
   status: 'NOT_FOUND', data: { message: 'Sale not found' },
 };
 
+const insertSalesErrorRequiredProduct = {
+  status: 'BAD_REQUEST', data: { message: '"productId" is required' },
+};
+
+const insertSalesErrorRequiredQuantity = {
+  status: 'BAD_REQUEST', data: { message: '"productId" is required' },
+};
+
+const insertSalesErrorQuantityThan0 = {
+  status: 'INVALID_VALUE', data: { message: '"quantity" must be greater than or equal to 1' },
+};
+
+const insertSalesErrorProductIdNotFound = {
+  status: 'NOT_FOUND', data: { message: 'Product not found' },
+};
+
 module.exports = {
   allSalesMockModel,
   saleByIdMockModel,
@@ -65,4 +81,8 @@ module.exports = {
   saleServiceByIdMock,
   salesServiceByIdNotFoundMock,
   saleCreatedMockModel,
+  insertSalesErrorRequiredProduct,
+  insertSalesErrorRequiredQuantity,
+  insertSalesErrorQuantityThan0,
+  insertSalesErrorProductIdNotFound,
 };
