@@ -25,8 +25,23 @@ const insertProductService = async (nameProduct) => {
   return { status: 'CREATED', data: productToBeInserted };
 };
 
+const updateProductService = async (nameProduct, productId) => {
+  const error = validationNameProductValue(nameProduct);
+  if (error) return { status: error.status, data: { message: error.message } };
+  
+  const errorProductField = await productsModel.getById(productId);
+
+  if (!errorProductField) return { status: 'NOT_FOUND', data: { message: 'Product not found' } };
+
+  const productToBeUpdated = await productsModel
+    .updateProduct(nameProduct.name, productId);
+  
+  return { status: 'SUCCESSFUL', data: productToBeUpdated };
+};
+
 module.exports = {
   getAllProductsService,
   getProductByIdService,
   insertProductService,
+  updateProductService,
 };
