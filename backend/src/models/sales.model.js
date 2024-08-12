@@ -39,7 +39,7 @@ const insertSale = async () => {
 const sales = async (products) => {
   const insertId = await insertSale();
 
-  products.forEach(async ({ productId, quantity }) =>
+  products.forEach(({ productId, quantity }) =>
     connection.execute(
       'INSERT INTO sales_products(sale_id, product_id, quantity) VALUES (?, ?, ?)',
       [insertId, productId, quantity],
